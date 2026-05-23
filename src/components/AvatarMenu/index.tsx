@@ -22,7 +22,7 @@ interface AvatarMenuProps {
 const getInitials = (user: User) => {
   if (user.firstName || user.lastName) {
     const initials = [user.firstName, user.lastName]
-      .map((_) => (_[0] ? _[0].toLocaleUpperCase() : _))
+      .map((_) => (_?.[0] ? _[0].toLocaleUpperCase() : _ ?? ""))
       .join("");
     return initials;
   }
@@ -35,7 +35,7 @@ const stringAvatar = (user: User) => {
   const r = Math.floor(parseInt(initials[0] ? initials[0] : "k", 36) * 7);
   const g = Math.floor(parseInt(initials[1] ? initials[1] : "l", 36) * 7);
   const b = Math.floor(
-    parseInt(user?.firstName[1] ? user?.firstName[1] : "m", 36) * 7
+    parseInt(user?.firstName?.[1] ? user.firstName[1] : "m", 36) * 7
   );
   return {
     sx: { bgcolor: `rgb(${r},${g},${b})`, cursor: "pointer" },
@@ -43,7 +43,7 @@ const stringAvatar = (user: User) => {
   };
 };
 
-const AvatarMenu = (props: AvatarMenuProps) => {
+const AvatarMenu = React.forwardRef<HTMLDivElement, AvatarMenuProps>((props, ref) => {
   const { user } = props;
   const theme = useTheme();
   const { t } = useTranslation("app");
@@ -58,7 +58,7 @@ const AvatarMenu = (props: AvatarMenuProps) => {
   // const history = useHistory();
 
   return (
-    <div>
+    <div ref={ref}>
       <Avatar onClick={handleClick} {...stringAvatar(user)} />
       <Menu
         id="demo-positioned-menu"
@@ -145,6 +145,6 @@ const AvatarMenu = (props: AvatarMenuProps) => {
       </Menu>
     </div>
   );
-};
+});
 
 export default AvatarMenu;

@@ -1,1 +1,34 @@
-{}
+{
+  "logout": "Abmelden",
+  "appTitle": "Supplier OS Anwendung",
+  "routes": {
+    "/home": "Bug-Bounty-Aufgabe"
+  },
+  "home": {
+    "welcome": "Willkommen!",
+    "intro": "Dies ist eine Demo-Anwendung mit ein paar Macken und Bugs, die du hoffentlich findest. 😃 Hier die Liste der <b>bekannten</b> Probleme:",
+    "sidenote": "Die Bugs haben unterschiedliche Schwierigkeitsgrade und sind allesamt typische Probleme aus dem Alltag eines React-Entwicklers. Um sie zu lösen, sind verschiedene Fähigkeiten gefragt: Googeln, Erfahrung, Doku- und Fehlermeldungs-Lesen, Kreativität und analytisches Denken.",
+    "issues": {
+      "missingKey": {
+        "title": "Konsolen-Fehler: Warnung: Each child in a list should have a unique \"key\" prop.",
+        "description": "Hoffentlich findest du heraus, was diesen Fehler verursacht – er ist ziemlich nervig."
+      },
+      "boldKnown": {
+        "title": "Das Wort „bekannten“ soll im Einleitungstext fett dargestellt werden.",
+        "description": "Bitte stelle bei der Umsetzung sicher, dass der i18n-Text nicht verändert wird."
+      },
+      "missingAvatar": {
+        "title": "Der Benutzer-Avatar in der App-Leiste fehlt, obwohl der Benutzer beim Start korrekt geladen werden sollte.",
+        "description": "Beim App-Start laden wir das aktuelle Benutzer-Objekt über einen MobX-Store, aber aus irgendeinem Grund wird der Avatar oben rechts in der App-Leiste nicht angezeigt. Achtung: Beim Lösen dieses Problems stößt du eventuell auf einen zweiten Bug."
+      },
+      "countdownGlitch": {
+        "title": "Optional: Der Countdown ist manchmal kaputt (schwer reproduzierbar).",
+        "description": "Einige Entwickler haben berichtet, dass sich der Countdown in der App-Leiste gelegentlich seltsam verhält, konnten das Problem aber nicht zuverlässig reproduzieren. Vielleicht findest du die Ursache."
+      },
+      "languageSwitch": {
+        "title": "Optional: Es wäre toll, die Sprache umschalten zu können.",
+        "description": "Bitte füge in der App-Leiste eine Sprachauswahl hinzu, um die UI-Sprache zwischen Englisch und Deutsch umzuschalten."
+      }
+    }
+  }
+}
