@@ -6,26 +6,18 @@ react-router 5, i18next).
 
 ## Running it
 
+Needs Node 16+. On anything newer than Node 17 you have to pass the legacy
+OpenSSL flag, otherwise webpack 4 dies with `ERR_OSSL_EVP_UNSUPPORTED`:
+
 ```
-npm install
-npm start
+npm install --legacy-peer-deps
+NODE_OPTIONS=--openssl-legacy-provider npm start
 ```
 
 Then open http://localhost:3000. The HashRouter sends you to `/#/home`.
 
-A few setup notes baked into the repo so this Just Works on any Node version
-and on CodeSandbox:
-
-- `.npmrc` sets `legacy-peer-deps=true` — the dep tree has a few unresolvable
-  peer ranges (MUI 5 wanting React 18 while we're on 17, mostly), so without
-  this npm 7+ refuses to install.
-- The `start` / `build` / `test` scripts wrap `react-scripts` in
-  `cross-env NODE_OPTIONS=--openssl-legacy-provider`. `react-scripts@4` ships
-  webpack 4, which uses the old OpenSSL provider that was removed in Node 17.
-  Without the flag Node 17+ blows up with `ERR_OSSL_EVP_UNSUPPORTED` the
-  moment webpack tries to hash a module.
-- `.codesandbox/tasks.json` tells the new CodeSandbox Devbox runtime to run
-  `npm install` then `npm start` and forward port 3000.
+`--legacy-peer-deps` is needed because the dep tree has a few peer-range
+conflicts (MUI 5 with React 17, mostly).
 
 ## Bugs fixed
 
